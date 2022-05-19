@@ -1,0 +1,26 @@
+/***********************************************************************
+ * Module:  AplicationState.java
+ * Author:  Nikola
+ * Purpose: Defines the Interface AplicationState
+ ***********************************************************************/
+
+package model;
+
+import java.util.*;
+
+/** @pdOid ab21de64-fbeb-44dd-ae9d-60b5502da524 */
+public interface AplicationState {
+   /** @pdOid 4b85d201-ae27-4559-96d8-4f5ae2387ee1 */
+   void setLoginVIew();
+   /** @pdOid 5dee3960-d9ac-4b16-beaf-2d0da6c17f9a */
+   void setDataView();
+   /** @pdOid 6f893cad-d8e5-4bf3-82c4-d05a320445ae */
+   void setMenuBar();
+   /** @pdOid dac8763f-c5de-414f-92a9-8040b5d321ec */
+   void setToolBar();
+   /** @pdOid 436144ad-edf0-41db-8219-720ffc3c65be */
+   void setApplicationBrowser();
+   /** @pdOid c8934abc-cb49-4a51-bdeb-a0c5a03f7fce */
+   void setStatusBar();
+
+}

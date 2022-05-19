@@ -1,0 +1,43 @@
+/***********************************************************************
+ * Module:  StatusBarView.java
+ * Author:  Nikola
+ * Purpose: Defines the Class StatusBarView
+ ***********************************************************************/
+
+package view;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
+
+import javax.swing.Box;
+import javax.swing.BoxLayout;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
+/** @pdOid e5e5be84-b545-44f7-a2f2-a0b874228623 */
+public class StatusBarView extends JPanel implements model.Observer {
+	private JLabel userLabel = new JLabel("");
+	private JLabel dateLabel = new JLabel("");
+
+	public StatusBarView() {
+		this.setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
+		this.add(Box.createHorizontalGlue());
+		this.add(this.userLabel);
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+		LocalDateTime now = LocalDateTime.now();
+		this.add(Box.createHorizontalStrut(20));
+		dateLabel.setText("Datum:  "+dtf.format(now).toString());
+		this.add(dateLabel);
+	}
+
+	@Override
+	public void update() {
+		// TODO Auto-generated method stub
+
+	}
+
+	public void setUser(String user) {
+		this.userLabel.setText("Korisnik  " + user + "  ");
+	}
+}

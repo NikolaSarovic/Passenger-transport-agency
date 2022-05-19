@@ -1,0 +1,17 @@
+/***********************************************************************
+ * Module:  ApplicationBrowserView.java
+ * Author:  Nikola
+ * Purpose: Defines the Class ApplicationBrowserView
+ ***********************************************************************/
+
+package view;
+
+import model.ApplicationBrowserModel;
+import java.util.*;
+
+/** @pdOid dfbb6bb5-6571-4f41-9749-0bd1e035ebc6 */
+public class ApplicationBrowserView {
+   /** @pdRoleInfo migr=no name=ApplicationBrowserModel assc=association8 */
+   public ApplicationBrowserModel applicationBrowserModel;
+
+}

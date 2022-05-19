@@ -1,0 +1,136 @@
+package view.inputViews.component;
+
+
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.Enumeration;
+import java.util.List;
+import java.util.Vector;
+
+import javax.swing.AbstractButton;
+import javax.swing.BoxLayout;
+import javax.swing.ButtonGroup;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFormattedTextField;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JRadioButton;
+import javax.swing.JTextField;
+
+import controller.OfficeControler;
+import view.inputViews.PoslovniceInputView;
+import view.style.StyledButtonUI;
+
+public class InputComponent extends JPanel {
+	private JLabel label;
+	private JTextField jTextField;
+	private JComboBox box;
+	private JRadioButton radio1;
+	private JRadioButton radio2;
+	private ButtonGroup buttonGrup;
+	private JFormattedTextField formatTextField;
+	
+	public InputComponent(String labelText, JTextField jTextField, Boolean setEnable) {
+		label = new JLabel(String.format("%s:", labelText));
+		label.setFont(new Font("Arial", Font.PLAIN, 14));
+		
+//		setLayout(new BorderLayout());
+		
+		add(label, BorderLayout.NORTH);
+		if(jTextField==null)
+		{
+			jTextField = new JTextField(20);
+		}
+		if(!setEnable)
+		{
+			jTextField.setEnabled(false);
+		}
+		jTextField.setPreferredSize(new Dimension(80,20));
+		add(jTextField, BorderLayout.SOUTH);
+	}
+
+public InputComponent(String labelText,JComboBox podaci,String selectedRow,Boolean isUpdate)
+{
+	label = new JLabel(String.format("%s:", labelText));
+	label.setFont(new Font("Arial", Font.PLAIN, 14));
+	add(label,BorderLayout.NORTH);
+	box=new JComboBox();
+	box.setPreferredSize(new Dimension(150,20));
+
+	
+	if(isUpdate==false)
+	{
+		box.addItem(selectedRow);
+	}
+	
+	for(int i=0;i<podaci.getItemCount();i++)
+	{
+	  if(podaci.getItemAt(i).equals(selectedRow) && isUpdate==false)
+		continue;
+		
+		  box.addItem(podaci.getItemAt(i));
+	}
+	
+	add(box,BorderLayout.NORTH);
+	
+	
+
+}
+	
+	public InputComponent(String labelText, ButtonGroup btng,JRadioButton rdb1,JRadioButton rdb2) {
+		label = new JLabel(String.format("%s:", labelText));
+		label.setFont(new Font("Arial", Font.PLAIN, 14));
+		add(label,BorderLayout.NORTH);
+		
+		 radio1=new JRadioButton();
+		radio2=new JRadioButton();
+		
+	
+		radio1=rdb1;
+		radio2=rdb2;
+		
+		buttonGrup=btng;
+			
+		
+		add(radio1,BorderLayout.SOUTH);
+		add(radio2,BorderLayout.SOUTH);
+		
+		
+		
+		
+		
+	}
+	
+	public InputComponent(String labelText, JFormattedTextField ftf) {
+		label=new JLabel(labelText);
+		add(label,BorderLayout.NORTH);
+		
+		formatTextField=new JFormattedTextField();
+		formatTextField.setText(ftf.getText());
+		
+		add(formatTextField,BorderLayout.SOUTH);
+	}
+	
+	public InputComponent(String buttonText, JButton button,String actionComand,PoslovniceInputView piv) {
+		button = new JButton(buttonText);
+		button.setFont(new Font("Arial", Font.PLAIN, 10));
+		button.setBackground(Color.decode("#D0D3D4"));
+		button.setActionCommand(actionComand);
+		button.addActionListener(new OfficeControler(piv));
+		add(button, BorderLayout.NORTH);
+		
+	}
+
+	
+		
+		
+		   		
+			
+	
+	
+}

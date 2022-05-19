@@ -1,0 +1,41 @@
+/***********************************************************************
+ * Module:  User.java
+ * Author:  Nikola
+ * Purpose: Defines the Class User
+ ***********************************************************************/
+
+package model;
+
+import java.util.*;
+
+/** @pdOid ad3ee6e5-fe5b-40bb-9a5b-812b83598efd */
+public class User {
+   /** @pdOid b0a2f2aa-e801-411e-ae48-31fa3845c60f */
+   private int id;
+   /** @pdOid 66267b6b-a1bc-412f-9afa-37bb0ea1c71e */
+   private String username;
+   /** @pdOid 9397ecc1-bc4b-4cb9-9666-15a5c3ce0cbd */
+   private String password;
+   /** @pdOid 69859002-a2a6-42ac-94c3-813b0da4bc3f */
+   private int usertype;
+   
+   /** @pdRoleInfo migr=no name=User assc=association2 */
+   public User instance;
+   
+   /** @pdOid 0b0d5351-28bc-4cf9-91e1-e13b6cc371ca */
+   public int getId() {
+      return id;
+   }
+   
+   /** @param newId
+    * @pdOid 2765d4ee-6f92-4f39-bfd1-cee309fde75b */
+   public void setId(int newId) {
+      id = newId;
+   }
+   
+   /** @pdOid 5eb9ec0d-6bed-4b28-8cd0-fa15a0d79353 */
+   public void getInstance() {
+      // TODO: implement
+   }
+
+}

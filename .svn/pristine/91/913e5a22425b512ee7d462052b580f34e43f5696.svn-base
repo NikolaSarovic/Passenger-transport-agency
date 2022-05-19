@@ -1,0 +1,128 @@
+package view.inputViews;
+
+import java.awt.GridLayout;
+import java.util.Enumeration;
+import java.util.List;
+import java.util.Vector;
+
+import javax.swing.AbstractButton;
+import javax.swing.BorderFactory;
+import javax.swing.ButtonGroup;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JRadioButton;
+import javax.swing.JTextField;
+
+import model.TableModel;
+import view.inputViews.component.InputComponent;
+
+public class ZaposleniInputView extends JPanel {
+	private JTextField tId;
+	private JTextField tDrzava;
+	private JTextField tIme;
+	private JTextField tImeRoditelja;
+	private JTextField tPrezime;
+	private JRadioButton rMale;
+    private JRadioButton rFemale;
+    private ButtonGroup genderButtonGroup;
+    private JTextField tMaticni;
+    private JTextField tUsername;
+    private JTextField tPassword;
+    private JButton submitButton;
+	
+	public ZaposleniInputView(TableModel tableModel,Boolean isAdAction)
+	{
+		GridLayout gridLayout=new GridLayout(2,2);
+		setLayout(gridLayout);
+		gridLayout.setHgap(4);
+		setLayout(gridLayout);
+		setBorder(BorderFactory.createEmptyBorder(3, 3, 3, 3));
+		
+		rMale=new JRadioButton("Musko");
+		rFemale=new JRadioButton("Zensko");
+		genderButtonGroup = new ButtonGroup();
+		 genderButtonGroup.add(rFemale);
+		 genderButtonGroup.add(rMale);
+		
+		
+			 
+		 
+		
+		if(isAdAction)
+		{
+			add(new InputComponent(tableModel.getColumnName(2),tPrezime,true));
+			add(new InputComponent(tableModel.getColumnName(3),tImeRoditelja,true));
+			add(new InputComponent(tableModel.getColumnName(4),tIme,true));
+			
+			add(new InputComponent(tableModel.getColumnName(5),genderButtonGroup,rMale,rFemale));
+		
+			
+			add(new InputComponent(tableModel.getColumnName(6),tMaticni,true));
+			
+			add(new InputComponent("Username",tUsername,true));
+			add(new InputComponent("Password",tUsername,true));
+			
+		//	add(new InputComponent("Dodaj", submitButton));		
+			
+		}
+		else
+		{
+			tId=new JTextField(tableModel.getValueAt(tableModel.getSelectRow(), 0).toString());
+			tDrzava=new JTextField(tableModel.getValueAt(tableModel.getSelectRow(), 1).toString());
+			tPrezime=new JTextField(tableModel.getValueAt(tableModel.getSelectRow(), 2).toString());
+			tImeRoditelja=new JTextField(tableModel.getValueAt(tableModel.getSelectRow(), 3).toString());
+			tIme=new JTextField(tableModel.getValueAt(tableModel.getSelectRow(), 4).toString());
+			//tr=new JTextField(tableModel.getValueAt(tableModel.getSelectRow(), 5).toString());
+			tMaticni=new JTextField(tableModel.getValueAt(tableModel.getSelectRow(), 6).toString());
+			
+			
+			add(new InputComponent(tableModel.getColumnName(0),tId,false));
+			add(new InputComponent(tableModel.getColumnName(1),tDrzava,false));
+			add(new InputComponent(tableModel.getColumnName(2),tPrezime,true));
+			add(new InputComponent(tableModel.getColumnName(3),tImeRoditelja,true));
+			add(new InputComponent(tableModel.getColumnName(4),tIme,true));
+			
+          
+			if(tableModel.getValueAt(tableModel.getSelectRow(),5).toString().equals("m"))
+			rMale.setSelected(true);
+			else
+			rFemale.setSelected(true);
+				
+			add(new InputComponent(tableModel.getColumnName(5),genderButtonGroup,rMale,rFemale)); 
+			
+			
+		    add(new InputComponent(tableModel.getColumnName(6),tMaticni,true));
+			
+		//	add(new InputComponent("Izmjeni", submitButton));			
+			
+		}
+		
+				
+		
+	}
+	public String getGender() {
+		String gender = "";
+		for(Enumeration<AbstractButton> buttons = genderButtonGroup.getElements(); buttons.hasMoreElements();) 
+		{
+	        AbstractButton genderButton = buttons.nextElement();
+			if(genderButton.isSelected())
+			{
+				switch (genderButton.getText()) {
+				case "Musko":
+					gender = "m";
+					break;
+
+				case "Zensko":
+					gender = "z";
+					break;
+				}
+			}
+		}
+	
+		return gender;
+	}
+
+
+
+}

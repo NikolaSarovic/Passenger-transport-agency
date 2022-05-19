@@ -1,0 +1,129 @@
+/***********************************************************************
+ * Module:  ToolBarView.java
+ * Author:  Nikola
+ * Purpose: Defines the Class ToolBarView
+ ***********************************************************************/
+
+package view;
+
+
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Point;
+import java.util.*;
+
+import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JPanel;
+
+import controller.RegistrationController;
+import controller.ToolBarController;
+
+/** @pdOid 3f3b4c93-2095-41d5-9386-a682f8e7cdda */
+public class ToolBarView extends JPanel {
+	JButton add = null;
+	JButton edit = null;
+	JButton delete = null;
+	JButton prev = null;
+	JButton next = null;
+
+	public ToolBarView() {
+		setLayout(null);
+		setLocation(new Point(40, 0));
+		setPreferredSize(new Dimension(0, 40));
+	
+
+		setBackground(Color.decode("#c6e2e5"));
+		add = new JButton();
+		add.setOpaque(false);
+		add.setContentAreaFilled(false);
+		add.setBorderPainted(false);
+		add.setIcon(new ImageIcon("./icons/add.png"));
+		add.setBorder(BorderFactory.createEmptyBorder());
+		add.setActionCommand("addRow");
+		add.setLocation(250, 0);
+		add.setSize(new Dimension(35, 35));
+		add.setToolTipText("Dodaj");
+		add(add);
+
+		edit = new JButton();
+		edit.setOpaque(false);
+		edit.setContentAreaFilled(false);
+		edit.setBorderPainted(false);
+		edit.setIcon(new ImageIcon("./icons/edit.png"));
+		edit.setBorder(BorderFactory.createEmptyBorder());
+		edit.setLocation(290, 0);
+		edit.setActionCommand("editRow");
+		edit.setSize(new Dimension(35, 35));
+		edit.setToolTipText("Izmjeni");
+		edit.setEnabled(false);
+		add(edit);
+
+		delete = new JButton();
+		delete.setOpaque(false);
+		delete.setContentAreaFilled(false);
+		delete.setBorderPainted(false);
+		delete.setIcon(new ImageIcon("./icons/delete.png"));
+		delete.setBorder(BorderFactory.createEmptyBorder());
+		delete.setLocation(330, 0);
+		delete.setActionCommand("deleteRow");
+		delete.setSize(new Dimension(35, 35));
+		delete.setToolTipText("Izbriši");
+		delete.setEnabled(false);
+		add(delete);
+
+		prev = new JButton();
+		prev.setOpaque(false);
+		prev.setContentAreaFilled(false);
+		prev.setBorderPainted(false);
+		prev.setIcon(new ImageIcon("./icons/prev.png"));
+		prev.setBorder(BorderFactory.createEmptyBorder());
+		prev.setActionCommand("prev");
+		prev.setLocation(370, 0);
+		prev.setSize(new Dimension(35, 35));
+		prev.setToolTipText("Prethodni");
+		prev.setEnabled(false);
+		add(prev);
+
+		next = new JButton();
+		next.setOpaque(false);
+		next.setContentAreaFilled(false);
+		next.setBorderPainted(false);
+		next.setIcon(new ImageIcon("./icons/next.png"));
+		next.setBorder(BorderFactory.createEmptyBorder());
+		next.setLocation(410, 0);
+		next.setActionCommand("next");
+		next.setSize(new Dimension(35, 35));
+		next.setToolTipText("Sljedeći");
+		next.setEnabled(false);
+		add(next);
+
+	}
+	
+	public void enableButtons()
+	{
+		this.add.setEnabled(true);
+		this.edit.setEnabled(true);
+		this.delete.setEnabled(true);
+		this.prev.setEnabled(true);
+		this.next.setEnabled(true);
+	}
+	
+	public void disableButtons()
+	{
+		this.edit.setEnabled(false);
+		this.delete.setEnabled(false);
+		this.prev.setEnabled(false);
+		this.next.setEnabled(false);
+	}
+	
+	public void addActionListeners(ToolBarController controller)
+	{
+		add.addActionListener(controller);
+		edit.addActionListener(controller);
+		delete.addActionListener(controller);
+		prev.addActionListener(controller);
+		next.addActionListener(controller);
+	}
+}

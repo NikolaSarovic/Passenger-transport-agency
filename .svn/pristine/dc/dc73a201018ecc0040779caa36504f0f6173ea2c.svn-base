@@ -1,0 +1,43 @@
+/***********************************************************************
+ * Module:  WorkingState.java
+ * Author:  Nikola
+ * Purpose: Defines the Class WorkingState
+ ***********************************************************************/
+
+package model;
+
+import java.util.*;
+
+/** @pdOid ff6fe6b3-eae7-4a00-8301-00ff5a051000 */
+public class WorkingState implements AplicationState {
+   /** @pdOid 4c984258-dbed-496c-930a-4ce5ab760bc9 */
+   public void setLoginVIew() {
+      // TODO: implement
+   }
+   
+   /** @pdOid 436ba16d-f1fd-485c-b859-8eb43297632d */
+   public void setDataView() {
+      // TODO: implement
+   }
+   
+   /** @pdOid 0aaf713d-7d35-4a1f-a552-6344be6f1460 */
+   public void setMenuBar() {
+      // TODO: implement
+   }
+   
+   /** @pdOid e64a3acf-f02b-478a-88d7-4366a06f59f5 */
+   public void setToolBar() {
+      // TODO: implement
+   }
+   
+   /** @pdOid e4659697-8275-4c73-aac3-ab0a0547d1d7 */
+   public void setApplicationBrowser() {
+      // TODO: implement
+   }
+   
+   /** @pdOid 9539be49-f3cc-4653-830d-81ae2e8f9426 */
+   public void setStatusBar() {
+      // TODO: implement
+   }
+
+}

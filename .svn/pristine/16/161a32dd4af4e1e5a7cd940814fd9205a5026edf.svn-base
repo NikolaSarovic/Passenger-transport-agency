@@ -1,0 +1,27 @@
+/***********************************************************************
+ * Module:  DBConnection.java
+ * Author:  Nikola
+ * Purpose: Defines the Class DBConnection
+ ***********************************************************************/
+
+package model;
+
+import java.util.*;
+
+/** @pdOid 5ea6c934-ab57-491e-805d-4369705d48b2 */
+public class DBConnection {
+   /** @pdOid a89a592c-adf5-4d8e-8cbd-9e9d86877fe3 */
+   private DBConnection() {
+      // TODO: implement
+   }
+   
+   /** @pdRoleInfo migr=no name=DBConnection assc=association10 */
+   public DBConnection instance;
+   
+   /** @pdOid 896df2c6-f94c-4773-8a0e-0caa7ba713db */
+   public DBConnection getInstance() {
+      // TODO: implement
+      return null;
+   }
+
+}

@@ -1,0 +1,20 @@
+/***********************************************************************
+ * Module:  ApplicationControler.java
+ * Author:  Nikola
+ * Purpose: Defines the Class ApplicationControler
+ ***********************************************************************/
+
+package controller;
+
+import model.ApplicationModel;
+import view.ApplicationView;
+import java.util.*;
+
+/** @pdOid 3444ac3a-9c53-4a3a-ae6b-8ec6503a9678 */
+public class ApplicationControler {
+   /** @pdRoleInfo migr=no name=ApplicationModel assc=association1 mult=0..1 */
+   public ApplicationModel applicationModel;
+   /** @pdRoleInfo migr=no name=ApplicationView assc=association2 mult=0..1 */
+   public ApplicationView applicationView;
+
+}

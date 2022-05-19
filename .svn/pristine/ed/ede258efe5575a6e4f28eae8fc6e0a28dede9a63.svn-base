@@ -1,0 +1,37 @@
+/***********************************************************************
+ * Module:  DataView.java
+ * Author:  Nikola
+ * Purpose: Defines the Class DataView
+ ***********************************************************************/
+
+package view;
+
+import java.util.*;
+
+import javax.swing.JTable;
+
+import model.TableModel;
+
+
+/** @pdOid f169e320-20e3-46af-80c0-767ca441f0c4 */
+public class DataView extends JTable  {
+	
+	public DataView(TableModel tableModel1) {
+		// TODO Auto-generated constructor stub
+		super(tableModel1);
+		this.setRowHeight(30);
+		System.out.println(tableModel1.getValueAt(1, 1));
+	}
+	public TableModel getTableModel() {
+		return (TableModel) getModel();
+	}
+	public void setTableModel(TableModel tabmodel) {
+		setModel(tabmodel);
+		this.updateUI();
+	}
+	
+	
+	
+	
+	
+}

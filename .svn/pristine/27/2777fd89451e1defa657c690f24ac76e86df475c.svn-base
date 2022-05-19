@@ -1,0 +1,137 @@
+/***********************************************************************
+ * Module:  MenuBarView.java
+ * Author:  Nikola
+ * Purpose: Defines the Class MenuBarView
+ ***********************************************************************/
+
+package view;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.WindowConstants;
+
+import controller.ToolBarController;
+import model.ApplicationModel;
+
+/** @pdOid 220ced1f-e932-4717-a5b6-ebc1aaf62c8a */
+public class MenuBarView extends JMenuBar implements model.Observer, ActionListener  {
+	
+	private JMenu fajl = new JMenu("Fajl");
+	private JMenuItem pocetna = new JMenuItem("Početna");
+	private JMenuItem izlaz = new JMenuItem("Izlaz");
+	private JMenu navigacija = new JMenu("Navigacija");
+	private JMenuItem pomjeranjePr = new JMenuItem("Prethodni");
+	private JMenuItem pomjeranjeSl = new JMenuItem("Slijedeci");
+	private JMenu izvjestaji = new JMenu("Izvjestaji");
+	private JMenuItem izPoslovnice = new JMenuItem("Izvjestaj o poslovnicama");
+	private JMenuItem izPutnici = new JMenuItem("Izvjestaj o putnicima");
+	
+	ApplicationView view;
+
+	public MenuBarView(ApplicationView view) {
+		super();
+		this.view = view;
+		
+		pocetna.setIcon(new ImageIcon("./icons/home.png"));
+		pocetna.setActionCommand("home");
+		pocetna.addActionListener(this);
+		
+		izlaz.setIcon(new ImageIcon("./icons/exit.png"));
+		izlaz.setActionCommand("exit");
+		izlaz.addActionListener(this);
+		
+		pomjeranjePr.setIcon(new ImageIcon("./icons/prev.png"));
+		pomjeranjePr.setActionCommand("prev");
+		pomjeranjePr.addActionListener(this);
+		
+		pomjeranjeSl.setIcon(new ImageIcon("./icons/next.png"));
+		pomjeranjeSl.setActionCommand("next");
+		pomjeranjeSl.addActionListener(this);
+		
+		fajl.add(pocetna);
+		fajl.add(izlaz);
+		navigacija.add(pomjeranjePr);
+		navigacija.add(pomjeranjeSl);
+		izvjestaji.add(izPoslovnice);
+		izvjestaji.add(izPutnici);
+		
+//		this.add(fajl);
+		this.add(navigacija);
+		this.add(izvjestaji);
+		setVisible(true);
+	}
+	
+	public void enableNavigationButtons()
+	{
+		pomjeranjePr.setEnabled(true);
+		pomjeranjeSl.setEnabled(true);
+	}
+	
+	public void disableNavigationButtons()
+	{
+		pomjeranjePr.setEnabled(false);
+		pomjeranjeSl.setEnabled(false);
+	}
+	
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		switch (e.getActionCommand()) {
+			case "home":
+			{
+				
+				break;
+			}
+			case "exit":
+			{
+				view.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+//				view.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				break;
+			}
+			case "prev":
+			{	
+				DataView dataView = view.getCenterView().getDataView();
+				int selectedRow = dataView.getSelectedRow();
+				int lastRow = dataView.getRowCount()-1;	
+				
+				if(selectedRow == 0)
+				{
+					dataView.setRowSelectionInterval(lastRow, lastRow);
+				}
+				else {
+					dataView.setRowSelectionInterval(selectedRow-1, selectedRow-1);
+				}
+				dataView.updateUI();
+				break;
+			}
+			case "next":
+			{			
+				DataView dataView = view.getCenterView().getDataView();
+				int selectedRow = dataView.getSelectedRow();
+				int lastRow = dataView.getRowCount()-1;		
+				if(selectedRow == lastRow)
+					
+				{
+					dataView.setRowSelectionInterval(0, 0);
+				}
+				else {
+					dataView.setRowSelectionInterval(selectedRow+1, selectedRow+1);
+					
+				}
+				dataView.updateUI();
+				break;
+			}
+		}
+	}
+	
+	@Override
+	public void update() {
+		// TODO Auto-generated method stub
+		
+	}
+}

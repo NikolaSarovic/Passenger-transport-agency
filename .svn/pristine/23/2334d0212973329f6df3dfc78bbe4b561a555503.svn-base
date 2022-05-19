@@ -1,0 +1,67 @@
+/***********************************************************************
+ * Module:  ApplicationView.java
+ * Author:  Nikola
+ * Purpose: Defines the Class ApplicationView
+ ***********************************************************************/
+
+package view;
+
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.Toolkit;
+
+import javax.swing.BoxLayout;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+
+import model.ApplicationModel;
+import model.TableModel;
+
+/** @pdOid cb609eba-9bd3-44c8-bc0b-60249bd5acb1 */
+public class ApplicationView extends JFrame implements model.Observer {
+   
+	private TableModel tableModel = new TableModel();//staticni table model i view vidi jefdan model tokom funkcionisanja app 
+   private DataView dataView = null; //pregled tabele 
+   private MenuBarView menuBarView = new MenuBarView();
+   private ToolBarView toolBarView=new ToolBarView();
+   private StatusBarView statusBarView = new StatusBarView();
+   private ApplicationBrowserView browserView = new ApplicationBrowserView();
+   private ApplicationModel appModel;
+	public ApplicationView() {
+		super();
+		JPanel southPanel = new JPanel();
+		southPanel.setLayout(new BoxLayout(southPanel, BoxLayout.Y_AXIS));
+		
+		
+		dataView= new DataView(this.tableModel);
+		Dimension ss = Toolkit.getDefaultToolkit().getScreenSize();
+		setSize(ss);
+		setExtendedState(JFrame.MAXIMIZED_BOTH);
+		this.setLayout(new BorderLayout());
+		this.add(new JScrollPane(this.dataView),BorderLayout.CENTER);
+		southPanel.add(new InputPanel(tableModel));
+		setJMenuBar(this.menuBarView);
+		this.add(toolBarView,BorderLayout.NORTH);
+		southPanel.add(statusBarView);
+		this.add(southPanel, BorderLayout.SOUTH);
+		this.add(browserView, BorderLayout.WEST);
+		setTitle("Agencija za prevoz putnika");
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setLocationRelativeTo(null);
+		setVisible(true);
+	}
+	public StatusBarView getStatusBar() {
+		return this.statusBarView;
+	}
+	public DataView getDataView() {
+		return this.dataView;
+	}
+	
+   @Override
+	public void update() {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

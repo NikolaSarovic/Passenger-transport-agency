@@ -1,0 +1,236 @@
+package controller;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.SQLException;
+import java.util.Vector;
+
+import javax.swing.JButton;
+
+import model.ApplicationModel;
+import model.DBConnection;
+import model.ProcedureModel;
+import model.TableModel;
+import model.User;
+import view.ApplicationBrowserView;
+import view.ApplicationView;
+
+public class ApplicationBrowserController implements ActionListener{
+	private ApplicationModel model;
+	private ApplicationView view = null;
+	public ApplicationBrowserController(ApplicationView view,ApplicationModel model) {
+		this.view = view;
+		this.model = model;
+		for(JButton button: this.view.getBrowserView().getBrowserButtons())
+			button.addActionListener(this);
+	}
+	
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		//dbInstance = DBConnection.getInstance().getConnection(); 
+		
+		Vector<String> columns=new Vector<String>();
+		Vector<Vector<String>> data=new Vector<Vector<String>>(); 
+		
+		
+		switch(e.getActionCommand()) {
+		case "Zaposleni":
+			columns.add("ID zaposlenog");
+			columns.add("Drzava");
+			columns.add("Prezime");
+			columns.add("Ime roditelja");
+			columns.add("Ime");
+			columns.add("pol");
+			columns.add("Matični broj");
+			ResultSet rs=ProcedureModel.getInstance().executeProcedure("{call st_SelectAll(?)}","Registar zaposlenih");
+			try {
+				while(rs.next())
+				{
+					Vector<String> dat = new Vector<String>();
+					dat.add(rs.getString("Identifikator zaposlenog"));
+					dat.add(rs.getString("Oznaka"));
+					dat.add(rs.getString("Prezime"));
+					dat.add(rs.getString("Ime roditelja"));
+					dat.add(rs.getString("Ime"));
+					dat.add(rs.getString("Pol"));
+					dat.add(rs.getString("Matični broj"));									
+					data.add(dat);
+				}
+				
+				
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
+			
+			
+			break;
+		  case "Poslovnice":
+			
+			try {
+				ResultSet result=ProcedureModel.getInstance().executeProcedure("{call st_PregledPoslovnica}");
+				ResultSetMetaData resultsetmetadata=result.getMetaData();
+				for(int i=0;i<resultsetmetadata.getColumnCount();i++)
+				{
+					columns.add(resultsetmetadata.getColumnLabel(i+1));
+				}
+				while(result.next())
+				{
+					Vector<String> dat = new Vector<String>();
+					for(int i=0;i<resultsetmetadata.getColumnCount();i++)
+					{
+						dat.add(result.getString(i+1));
+					}
+					data.add(dat);
+					
+				}
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			
+			
+			
+			break;
+		case "Resursi":
+			
+			try {
+				ResultSet result=ProcedureModel.instance.executeProcedure("{call st_PregledVozila}");
+				ResultSetMetaData resultSetMetaData=result.getMetaData();
+				for(int i=0;i<resultSetMetaData.getColumnCount();i++)
+				{
+					columns.add(resultSetMetaData.getColumnName(i+1));					
+				}
+				while(result.next())
+				{
+					Vector<String> dat=new Vector<String>();
+					for(int i=0;i<resultSetMetaData.getColumnCount();i++)
+					{
+						dat.add(result.getString(i+1));
+						
+					}
+					data.add(dat);
+					
+				}
+				
+			
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			
+		     break;
+		case "Putovanja":
+			try {
+				ResultSet result=ProcedureModel.instance.executeProcedure("{call st_PregledPutovanjaMenadzer(?)}",User.getInstance().getId());
+				ResultSetMetaData resultSetMetaData=result.getMetaData();
+				for(int i=0;i<resultSetMetaData.getColumnCount();i++)
+				{
+					columns.add(resultSetMetaData.getColumnName(i+1));					
+				}
+				while(result.next())
+				{
+					Vector<String> dat=new Vector<String>();
+					for(int i=0;i<resultSetMetaData.getColumnCount();i++)
+					{
+						dat.add(result.getString(i+1));
+						
+					}
+					data.add(dat);
+					
+				}
+				
+			
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}							
+			break;
+		case "Rezervacije":
+			
+			try {
+				ResultSet result=ProcedureModel.instance.executeProcedure("{call st_PregledRezervacijaMenadzer}");
+				ResultSetMetaData resultSetMetaData=result.getMetaData();
+				for(int i=0;i<resultSetMetaData.getColumnCount();i++)
+				{
+					columns.add(resultSetMetaData.getColumnName(i+1));
+				}
+				while(result.next())
+				{
+					Vector<String> dat=new Vector<String>();
+					for(int i=0;i<resultSetMetaData.getColumnCount();i++)
+					{
+						dat.add(result.getString(i+1));
+						
+					}
+					data.add(dat);
+					
+				}
+				
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			break;
+		case "Pregled rezervacija":
+			
+			try {
+				ResultSet result=ProcedureModel.instance.executeProcedure("{call st_PregledRezervacijaPutnik(?)}",User.getInstance().getId());
+				ResultSetMetaData resultSetMetaData=result.getMetaData();
+				for(int i=0;i<resultSetMetaData.getColumnCount();i++)
+				{
+					columns.add(resultSetMetaData.getColumnName(i+1));					
+				}
+				while(result.next())
+				{
+					Vector<String> dat=new Vector<String>();
+					for(int i=0;i<resultSetMetaData.getColumnCount();i++)
+					{
+						dat.add(result.getString(i+1));
+						
+					}
+					data.add(dat);
+					
+				}
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			break;
+		case "Putovanjaa":
+			
+			try {
+				ResultSet result=ProcedureModel.instance.executeProcedure("{call st_PregledPutovanjaPutnik}");
+				ResultSetMetaData resultSetMetaData=result.getMetaData();
+				for(int i=0;i<resultSetMetaData.getColumnCount();i++)
+				{
+					columns.add(resultSetMetaData.getColumnName(i+1));
+				}
+				while(result.next())
+				{
+					Vector<String> dat=new Vector<String>();
+					for(int i=0;i<resultSetMetaData.getColumnCount();i++)
+					{
+						dat.add(result.getString(i+1));
+					}
+					data.add(dat);
+				}
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			break;
+			default:
+			break;
+		}
+		TableModel tabmodel=new TableModel(columns,data);
+		this.model.setTableModel(tabmodel);
+		this.view.getDataView().setTableModel(tabmodel);
+		view.update();
+		
+	}
+
+}

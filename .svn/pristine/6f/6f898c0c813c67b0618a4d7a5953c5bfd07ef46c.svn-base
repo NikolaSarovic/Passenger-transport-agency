@@ -1,0 +1,133 @@
+/***********************************************************************
+ * Module:  ApplicationBrowserView.java
+ * Author:  Nikola
+ * Purpose: Defines the Class ApplicationBrowserView
+ ***********************************************************************/
+
+package view;
+
+import model.ApplicationBrowserModel;
+import model.ApplicationModel;
+
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Point;
+import java.util.*;
+
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.Border;
+
+import controller.ApplicationBrowserController;
+
+/** @pdOid dfbb6bb5-6571-4f41-9749-0bd1e035ebc6 */
+public class ApplicationBrowserView extends JPanel {
+	private ApplicationModel appModel;
+	public ApplicationBrowserModel applicationBrowserModel;
+   	public JButton[] buttons;
+   
+   	public ApplicationBrowserView(ApplicationModel appModel) {
+   		
+   		this.appModel = appModel;
+   		
+	   setPreferredSize(new Dimension(250, 0));
+//		setBackground(Color.decode("#303030"));
+		Border border = BorderFactory.createMatteBorder(2, 2, 2, 2, new Color(240, 240, 240));
+		setBorder(border);
+
+		JPanel details = new JPanel();
+		details.setOpaque(false);
+		details.setLocation(new Point(0, 0));
+		details.setPreferredSize(new Dimension(0, 0));
+//		details.setBackground(Color.decode("#303030"));
+		Border border1 = BorderFactory.createMatteBorder(2, 2, 2, 2, new Color(240, 240, 240));
+		details.setBorder(border1);
+		
+		int userType = appModel.user.getUserType();
+	
+		switch (userType) {
+		case 1:
+			buttons = addAdminOptions();
+			break;
+		case 2:
+			buttons = addManangerOptions();
+			break;	
+		case 3:
+			buttons = addTravelerOptions();
+			break;
+		default:
+			break;
+		}
+		
+		int brojac = 0;
+
+		for (JButton btn : buttons) {
+
+			btn.setPreferredSize(new Dimension(230, 30));
+//			btn.addActionListener(dodavanjeActionListenera(details)[brojac++]);
+			btn.setBackground(Color.decode("#66b3ff"));
+//			btn.setUI(new StyledButtonUI());
+			add(btn);
+		}
+//		add(details);
+   }
+   
+   private JButton[] addAdminOptions() {
+		 buttons = new JButton[3];
+		 JButton button0 = new JButton();
+		 button0.setActionCommand("Poslovnice");
+		buttons[0] = new JButton("Poslovnice");
+		 JButton button1 = new JButton();
+		 button1.setActionCommand("Zaposleni");
+		buttons[1] = new JButton("Zaposleni");
+		 JButton button2 = new JButton();
+		 button2.setActionCommand("Resursi");
+		buttons[2] = new JButton("Resursi");
+
+		return buttons;
+	}
+   
+   private JButton[] addManangerOptions() {
+		 buttons = new JButton[3];
+        
+	     JButton button0 = new JButton();
+	     button0.setActionCommand("Putovanja");
+    	buttons[0] = new JButton("Putovanja");		
+    	 JButton button1 = new JButton();
+	     button1.setActionCommand("Rezervacije");
+		buttons[1] = new JButton("Rezervacije");
+		 JButton button2 = new JButton();
+	     button2.setActionCommand("Izvještaji");
+		buttons[2] = new JButton("Izvještaji");
+
+		return buttons;
+	}
+   
+   private JButton[] addTravelerOptions() {
+		buttons = new JButton[2];
+        
+		JButton button0 = new JButton();
+	     button0.setActionCommand("Putovanja");
+		buttons[0] = new JButton("Putovanja");
+		JButton button1 = new JButton();
+	    button1.setActionCommand("Rezervacije");
+		buttons[1] = new JButton("Rezervacije");
+
+		return buttons;
+	}
+   
+   public JButton[] getBrowserButtons() {
+	   return this.buttons;
+   }
+   public void setController(ApplicationBrowserController controller) {
+	   for(JButton button : this.buttons)
+		   button.addActionListener(controller);
+   }
+   
+   
+   
+   
+   
+}

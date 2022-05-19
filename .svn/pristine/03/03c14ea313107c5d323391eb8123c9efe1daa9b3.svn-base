@@ -1,0 +1,98 @@
+package view;
+
+import java.awt.Color;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
+
+import command.Command;
+import command.DeleteCommand;
+import model.TableModel;
+
+public class InputPanel extends JPanel { //ne treba ovako ovo je primjer preko actionlistenera
+
+	String tableType = "";
+	private TableModel model;
+	private JTextField inputField = new JTextField();
+	private JButton submit = new JButton("Dodaj");
+	private JButton remove = new JButton("Ukloni");
+	
+//	public InputPanel(String currentTableType, String actionType) {
+//
+//		switch (currentTableType) {
+//			case "Zaposleni":
+//					
+//				break;
+//	
+//			case "Poslovnice":
+//				
+//				break;
+//			case "Resursi":
+//				
+//				break;
+//			case "Putovanja":
+//				
+//				break;
+//			case "Rezervacije":
+//				
+//				break;
+//			case "Pregled rezervacija":
+//				
+//				break;
+//			case "Putovanjaa":
+//				
+//				break;
+//		}
+//	}
+	
+	
+	
+	public InputPanel() {
+		// TODO Auto-generated constructor stub
+		setBackground(Color.decode("#c54b0a"));
+//		setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
+		setLayout(new GridLayout(1,1));
+		add(submit);
+		add(remove);
+	}
+	
+	public void setInputView(TableModel tableModel, String currentTableType, String actionType) {
+
+		switch (currentTableType) {
+			case "Zaposleni":
+					
+				break;
+	
+			case "Poslovnice":
+				
+				break;
+			case "Resursi":
+				
+				break;
+			case "Putovanja":
+				
+				break;
+			case "Rezervacije":
+				
+				break;
+			case "Pregled rezervacija":
+				
+				break;
+			case "Putovanjaa":
+				
+				break;
+		}
+	}
+	
+	private void setZaposleniInputView(String actionType)
+	{
+//		if()
+	}
+	
+}

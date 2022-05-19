@@ -1,0 +1,54 @@
+package view.inputViews;
+
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.Font;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.GridLayout;
+
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+
+import model.TableModel;
+import view.inputViews.component.InputComponent;
+
+public class PoslovniceInputView extends JPanel {
+	
+	private JTextField tOznakaJedinice;
+	private JTextField tDržava;
+	private JTextField tNaziv;
+	private JTextField tAdresa;
+	private JTextField tTelefon;
+	private JTextField tEmail;
+	private JTextField tGrad;
+	
+	private JButton submitButton;
+	
+	public PoslovniceInputView(TableModel tableModel, Boolean isAddAction)
+	{
+		int rowCount = tableModel.getColumnCount()/4;
+		setLayout(new GridLayout(0,4));
+		
+		
+		if(!isAddAction)
+		{
+			add(new InputComponent(tableModel.getColumnName(0), tOznakaJedinice, false));
+			add(new InputComponent(tableModel.getColumnName(1), tDržava, false));
+		}
+		add(new InputComponent(tableModel.getColumnName(2), tNaziv, true));
+		add(new InputComponent(tableModel.getColumnName(3), tAdresa, true));
+		add(new InputComponent(tableModel.getColumnName(4), tTelefon, true));
+		add(new InputComponent(tableModel.getColumnName(5), tEmail, true));
+//		add(new InputComponent(tableModel.getColumnName(6), tGrad));
+		
+		if(isAddAction)
+			add(new InputComponent("Dodaj", submitButton));
+		else
+			add(new InputComponent("Izmjeni", submitButton));
+		
+		
+	}
+}

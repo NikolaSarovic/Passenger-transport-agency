@@ -1,0 +1,46 @@
+/***********************************************************************
+ * Module:  MenuBarView.java
+ * Author:  Nikola
+ * Purpose: Defines the Class MenuBarView
+ ***********************************************************************/
+
+package view;
+
+import javax.swing.ImageIcon;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+
+/** @pdOid 220ced1f-e932-4717-a5b6-ebc1aaf62c8a */
+public class MenuBarView extends JMenuBar implements model.Observer {
+	
+	private JMenu navigacija = new JMenu("Navigacija");
+	private JMenuItem pomjeranjePr = new JMenuItem("Prethodni");
+	private JMenuItem pomjeranjeSl = new JMenuItem("Slijedeci");
+	private JMenu izvjestaji = new JMenu("Izvjestaji");
+	private JMenuItem izPoslovnice = new JMenuItem("Izvjestaj o poslovnicama");
+	private JMenuItem izPutnici = new JMenuItem("Izvjestaj o putnicima");
+
+	public MenuBarView() {
+		super();
+		pomjeranjeSl.setIcon(new ImageIcon("./icons/next.png"));
+		pomjeranjePr.setIcon(new ImageIcon("./icons/prev.png"));
+
+		navigacija.add(pomjeranjePr);
+		navigacija.add(pomjeranjeSl);
+		izvjestaji.add(izPoslovnice);
+		izvjestaji.add(izPutnici);
+		this.add(navigacija);
+		this.add(izvjestaji);
+		setVisible(true);
+	}
+	
+	
+	
+	
+	@Override
+	public void update() {
+		// TODO Auto-generated method stub
+		
+	}
+}

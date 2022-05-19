@@ -1,0 +1,51 @@
+package view;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
+
+import command.Command;
+import command.DeleteCommand;
+import model.TableModel;
+
+public class InputPanel extends JPanel implements ActionListener { //ne treba ovako ovo je primjer preko actionlistenera
+
+	private TableModel model;
+	private JTextField inputField = new JTextField();
+	private JButton submit = new JButton("Dodaj");
+	private JButton remove = new JButton("Ukloni");
+	public InputPanel(TableModel model) {
+		this.model = model;
+		this.setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
+		
+		submit.addActionListener(this);
+		remove.addActionListener(this);
+		submit.setActionCommand("dodaj");
+		remove.setActionCommand("ukloni");
+		add(inputField);
+		add(submit);
+		add(remove);
+		
+	}
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		switch(e.getActionCommand()) {
+		case "dodaj":
+			model.addRow(this.inputField.getText());
+			break;
+		case "ukloni":
+			ApplicationView view = (ApplicationView) SwingUtilities.getWindowAncestor(this);
+			int index = view.getDataView().getSelectedRow();
+			Command del = new DeleteCommand(index, model);
+			del.execute();
+			break;
+		}
+		
+		
+	}
+}

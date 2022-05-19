@@ -1,0 +1,70 @@
+package view;
+
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
+
+import command.Command;
+import command.DeleteCommand;
+import model.TableModel;
+import view.inputViews.PoslovniceInputView;
+
+public class InputPanel extends JPanel { //ne treba ovako ovo je primjer preko actionlistenera
+
+	TableModel tableModel = null;
+	
+	private JLabel label;
+	private TableModel model;
+	private JTextField inputField = new JTextField();
+	private JButton submit = new JButton("Dodaj");
+	private JButton remove = new JButton("Ukloni");
+	
+	
+	public InputPanel() {
+		setLayout(new BorderLayout());
+	}
+	
+	public void setInputView(TableModel tableModel, String currentTableType, Boolean isAddAction) {
+		switch (currentTableType) {
+			case "Poslovnice":
+				add(new PoslovniceInputView(tableModel, isAddAction), BorderLayout.NORTH);
+			break;
+			case "Zaposleni":
+				for(int i = 0; i<tableModel.getColumnCount();i++)
+				{
+					setLayout(new GridLayout());
+					label = new JLabel(String.format("%s:", tableModel.getColumnName(i)));
+					add(label);
+					
+				}
+				break;
+			case "Resursi":
+				
+				break;
+			case "Putovanja":
+				
+				break;
+			case "Rezervacije":
+				
+				break;
+			case "Pregled rezervacija":
+				
+				break;
+			case "Putovanjaa":
+				
+				break;
+		}
+	}
+	
+	
+	
+}

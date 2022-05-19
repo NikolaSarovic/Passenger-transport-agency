@@ -1,0 +1,63 @@
+package controller;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.Vector;
+
+import javax.swing.JButton;
+
+import model.ApplicationModel;
+import model.DBConnection;
+import model.TableModel;
+import view.ApplicationBrowserView;
+import view.ApplicationView;
+
+public class ApplicationBrowserController implements ActionListener{
+	private DBConnection  dbInstance=null;
+	private ApplicationModel model;
+	private ApplicationView view = null;
+	public ApplicationBrowserController(ApplicationView view,ApplicationModel model) {
+		this.view = view;
+		this.model = model;
+		for(JButton button: this.view.getBrowserView().getBrowserButtons())
+			button.addActionListener(this);
+	}
+	
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		dbInstance = DBConnection.getInstance();
+		dbInstance.getConnection(); 
+		
+		switch(e.getActionCommand()) {
+		case "Putovanja":
+			
+			view.refreshTableView();
+			break;
+		case "Poslovnice":
+			Vector<String> columns = new Vector<String>();
+			columns.add("Column1");
+			columns.add("Column2");
+			Vector<Vector<String>> data = new Vector<Vector<String>>();
+			for(int i = 0; i<3;i++) {
+				Vector<String> dat = new Vector<String>();
+				dat.add("adfdas");
+				dat.add("fdsafda");
+				data.add(dat);
+			}
+			
+			TableModel tabmodel = new TableModel(columns,data);
+			this.model.setTableModel(tabmodel);
+			this.view.getDataView().setTableModel(tabmodel);
+			view.update();
+			
+			break;
+		
+		
+			default:
+				break;
+		}
+		
+	}
+
+}

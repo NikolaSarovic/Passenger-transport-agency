@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<connectionData>
+	<databaseType>DatabaseType.MsSQL_JDBC</databaseType>
+	<address>78.28.157.8</address>
+	<port>1433</port>
+	<database>PIS2021</database>
+	<username>EtfPIS2021G7</username>
+	<password>EtfPIS2021G76345</password>
+	<schema>pisg7212</schema>
+</connectionData>

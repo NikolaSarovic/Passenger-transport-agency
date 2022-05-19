@@ -1,0 +1,35 @@
+/***********************************************************************
+ * Module:  DataView.java
+ * Author:  Nikola
+ * Purpose: Defines the Class DataView
+ ***********************************************************************/
+
+package view;
+
+import java.util.*;
+
+import javax.swing.JTable;
+
+import model.TableModel;
+
+
+/** @pdOid f169e320-20e3-46af-80c0-767ca441f0c4 */
+public class DataView extends JTable implements model.Observer {
+	private TableModel tableModel = null;
+	
+	public DataView(TableModel tableModel) {
+		// TODO Auto-generated constructor stub
+		super(tableModel);
+		this.tableModel = tableModel;
+		this.tableModel.subscribe(this); //TableView koji vuèe podatke iz TableModela se pretplaæuje na isti.
+										//Svaki put kad se desi neka promjena na TableModelu (Dodavanje ili uklanjanje reda npr)
+										//DataView je obavješten nakon èega osvježava svoje podatke. Ovo se obavlja u metodi update()
+		this.setRowHeight(30);
+	}
+	
+	@Override
+	public void update() {
+		this.updateUI();
+		
+	}
+}

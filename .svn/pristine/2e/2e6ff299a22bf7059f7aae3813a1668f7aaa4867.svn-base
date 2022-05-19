@@ -1,0 +1,43 @@
+/***********************************************************************
+ * Module:  ReadyState.java
+ * Author:  Nikola
+ * Purpose: Defines the Class ReadyState
+ ***********************************************************************/
+
+package model;
+
+import java.util.*;
+
+/** @pdOid ae1b4e3c-4213-448b-80b6-4b4cfaa61f9e */
+public class ReadyState implements AplicationState {
+   /** @pdOid 4b24c189-3371-4657-a78d-d1b1cf9f99d4 */
+   public void setLoginVIew() {
+      // TODO: implement
+   }
+   
+   /** @pdOid 9aa35046-e9b0-42fc-a0df-6afb0555ae10 */
+   public void setDataView() {
+      // TODO: implement
+   }
+   
+   /** @pdOid 5c1cf4b4-bd55-4400-aa0c-8ce099eb34c1 */
+   public void setMenuBar() {
+      // TODO: implement
+   }
+   
+   /** @pdOid cbfe6d03-46e9-422e-81db-f95fadc6ffae */
+   public void setToolBar() {
+      // TODO: implement
+   }
+   
+   /** @pdOid 6fd39fa1-9e0a-4337-b46f-0d41b28a7505 */
+   public void setApplicationBrowser() {
+      // TODO: implement
+   }
+   
+   /** @pdOid 058f8dc1-5adf-475c-a8b4-5c2c514cf954 */
+   public void setStatusBar() {
+      // TODO: implement
+   }
+
+}

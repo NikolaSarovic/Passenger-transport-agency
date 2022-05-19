@@ -1,0 +1,29 @@
+/***********************************************************************
+ * Module:  ApplicationModel.java
+ * Author:  Nikola
+ * Purpose: Defines the Class ApplicationModel
+ ***********************************************************************/
+
+package model;
+
+import java.util.*;
+
+/** @pdOid a76b4908-9a48-4079-b099-726a6635cffe */
+public class ApplicationModel {
+   /** @pdOid 6aced1fb-f21e-425d-b682-775ae860e66e */
+   public User user;
+   /** @pdOid 1a0c884f-161c-403e-9a87-4f7e37c7efd1 */
+   public AplicationState state;
+   /** @pdOid 6a87d333-986c-4398-8527-c7ed7fa4f408 */
+   public Observer observer;
+   
+   /** @pdRoleInfo migr=no name=User assc=association1 */
+   public User korisnik;
+   /** @pdRoleInfo migr=no name=AplicationState assc=association3 */
+   public AplicationState aplicationState;
+   /** @pdRoleInfo migr=no name=Subscriber assc=association4 */
+   public Subscriber subscriber;
+   /** @pdRoleInfo migr=no name=ApplicationBrowserModel assc=association7 */
+   public ApplicationBrowserModel applicationBrowserModel;
+
+}

@@ -1,0 +1,47 @@
+package view.inputViews.component;
+
+
+import java.awt.BorderLayout;
+import java.util.List;
+
+import javax.swing.BoxLayout;
+import javax.swing.ButtonGroup;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+
+public class InputComponent extends JPanel {
+	private JLabel label;
+	private JTextField jTextField;
+	
+	public InputComponent(String labelText, JTextField jTextField, Boolean setEnable) {
+		label = new JLabel(String.format("%s:", labelText));
+		
+//		setLayout(new BorderLayout());
+		
+		add(label, BorderLayout.NORTH);
+		
+		jTextField = new JTextField(20);
+		if(!setEnable)
+		{
+			jTextField.setEnabled(false);
+		}
+		add(jTextField, BorderLayout.SOUTH);
+	}
+	
+	public InputComponent(String labelText, ButtonGroup buttonGroup) {
+		
+	}
+	
+	public InputComponent(String labelText, List<JComboBox> comboBoxes) {
+		
+	}
+	
+	public InputComponent(String buttonText, JButton button) {
+		button = new JButton(buttonText);
+		
+		add(button, BorderLayout.NORTH);
+	}
+}
